@@ -1,0 +1,62 @@
+*{
+    font-family: sans-serif;
+}
+form[type='loginAuth'] {
+    width: 500px;
+    margin-top: 160px;
+    margin-left: 490px;
+    top: 500px;
+    background-color: #010136;
+    border-radius: 10px;
+    padding: 20px;
+    border: 3px solid #b2e8b2;
+}
+
+input {
+    border-radius: 5px;
+    padding: 10px;
+    border: 3px solid #b2e8b2;
+    width: 95%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: lightgreen;
+    border: none;
+    margin-right : 20px;
+    margin-top: 20px;
+}
+body {
+    background-color: #00001a;
+}
+button[type="submit"] {
+    width: 100%;
+}
+button[type="change"] {
+    width: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+span{
+    color: #b2e8b2;
+}
+label{
+    color: #b2e8b2;
+    font-size: 18px;
+}
+.labelName{
+    color: #b2e8b2;
+    font-size: 25px;
+    text-align: center;
+    margin: 10px;
+}
+.error{
+    color: #e79fa1;
+    font-size: 18px;
+    margin-top: 10px;
+}

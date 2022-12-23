@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./loginAuthpage.css"
 
 
 function RegistrationForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     const handleSubmit = async e => {
         e.preventDefault();
+        if (username.length < 4) {
+            setError('Логин должен содержать минимум 4 символа!');
+            return;
+        }
+        if (password.length < 4) {
+            setError('Пароль должен содержать минимум 4 символа!');
+            return;
+        }
+        if (password !== confirmPassword) {
+            setError('Пароли не совпадают!');
+            return;
+        }
         try {
             await axios.post(
                 `http://localhost:8080/api/user/save`,
@@ -30,16 +44,17 @@ function RegistrationForm() {
                     if (error.response.status === 400){
                         setError("Имя пользователя занято!");
                     }else {
-                        setError(error.message);
+                        setError("Проблема на стороне сервера!")
                     }
                 });
         } catch (err) {
-            setError(err.message);
+            setError("Проблема на стороне сервера!");
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form type="loginAuth" onSubmit={handleSubmit}>
+            <div className="labelName">Регистрация</div>
             <label>
                 Имя пользователя:
                 <input
@@ -58,7 +73,16 @@ function RegistrationForm() {
                 />
             </label>
             <br />
-            {error && <div>{error}</div>}
+            <label>
+                Повторите пароль:
+                <input
+                    type="password"
+                    value={confirmPassword}
+                    onChange={e => setConfirmPassword(e.target.value)}
+                />
+            </label>
+            <br />
+            {error && <div className="error">{error}</div>}
             <button type="submit">
                 Зарегистрироваться
             </button>

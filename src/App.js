@@ -3,6 +3,7 @@ import LoginForm from './loginpage/LoginForm';
 import RegistrationForm from './loginpage/RegistrationForm';
 import MainPage from './mainpage/MainPage';
 
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(null);
@@ -19,7 +20,7 @@ function App() {
     setIsLoggedIn(false);
   };
 
-  const [loginform, setLoginForm] = useState(false);
+  const [loginform, setLoginForm] = useState(true);
   const [authform, setAuthForm] = useState(false);
 
   const handleAuthForm = () => {
@@ -43,8 +44,13 @@ function App() {
         ) : (
             <div>
               <div>
-                <button onClick={handleAuthForm}>Регистрация</button>
-                <button onClick={handleLoginForm}>Вход</button>
+                <span className="labelName">Громилова Мария P32311</span>
+                {loginform ? (
+                    <button type="change" onClick={handleAuthForm}>Регистрация</button>)
+                    :(<div></div>)}
+                {authform ? (
+                    <button type="change" onClick={handleLoginForm}>Вход</button>
+                ):(<div></div>)}
               </div>
 
             <div>

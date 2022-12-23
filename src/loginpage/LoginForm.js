@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./loginAuthpage.css"
 
 function LoginForm() {
     const [username, setUsername] = useState('');
@@ -9,7 +10,6 @@ function LoginForm() {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        let response;
         try {
             await axios.get(
                 `http://localhost:8080/api/login?username=${username}&password=${password}`
@@ -20,11 +20,11 @@ function LoginForm() {
                 window.location.href = '/';
             })
                 .catch(error => {
-                    if (error.response.status === 401) {
-                        setError("Неправильный пароль или имя пользователя!");
-                    } else {
-                        setError(error);
-                    }
+                        if (error?.response?.status === 401) {
+                            setError("Неправильный пароль или имя пользователя!");
+                        } else {
+                            setError("Проблема на стороне сервера!")
+                        }
                 });
 
         } catch (err) {
@@ -34,7 +34,8 @@ function LoginForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form type="loginAuth" onSubmit={handleSubmit}>
+            <div className="labelName">Вход</div>
             <label>
                 Имя пользователя:
                 <input
@@ -53,7 +54,7 @@ function LoginForm() {
                 />
             </label>
             <br />
-            {error && <div>{error}</div>}
+            {error && <div className="error">{error}</div>}
             <button type="submit" >
                 Войти
             </button>

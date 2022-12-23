@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react';
+import "./CoordinatesForm.css";
+import CoordinatesForm from "./CoordinatesForm";
+import "./mainPage.css"
 
 const MainPage = () => {
     // Проверяем, есть ли токен доступа в sessionStorage
@@ -17,7 +20,12 @@ const MainPage = () => {
 
     return (
         <div>
-            <button onClick={handleLogout}>Выйти</button>
+        <div>
+            <CoordinatesForm></CoordinatesForm>
+        </div>
+        <div>
+            <button type="exit" onClick={handleLogout}>Выйти</button>
+        </div>
         </div>
     );
 }

@@ -1,0 +1,7 @@
+button[type="exit"] {
+    width: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
