@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
-import "./CoordinatesForm.css";
-import CoordinatesForm from "./CoordinatesForm";
+import "./form/CoordinatesForm.css";
+import CoordinatesForm from "./form/CoordinatesForm";
 import "./mainPage.css"
+import Table from "./table/Table";
+import Area from "./area/Area";
+
 
 const MainPage = () => {
     // Проверяем, есть ли токен доступа в sessionStorage
@@ -22,10 +25,12 @@ const MainPage = () => {
         <div>
         <div>
             <CoordinatesForm></CoordinatesForm>
+            <Area></Area>
         </div>
         <div>
             <button type="exit" onClick={handleLogout}>Выйти</button>
         </div>
+            <div><Table></Table></div>
         </div>
     );
 }

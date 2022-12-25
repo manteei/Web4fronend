@@ -6,30 +6,31 @@ function CoordinatesForm() {
     const [x, setX] = useState("0");
     const [y, setY] = useState("0");
     const [radius, setRadius] = useState('1');
-    /*const handleChange = (e) => {
-        const value = e.target.value;
-        if (value >= -5 && value <= 5) {
-            // сохранить значение в state
-        } else {
-            // вывести сообщение об ошибке
-        }
-    }*/
+    const [yError, setYError] = useState(false);
+
     const handleSubmit = async e => {
         e.preventDefault();
 
-        await axios.post('http://localhost:8080/api/points/check', {
-            x: x,
-            y: y,
-            radius: radius
-        }, {
-            headers: {
-                Authorization: 'Bearer ' + sessionStorage.getItem('access_token')
+            if (y >= -5 && y <= 5) {
+                await axios.post('http://localhost:8080/api/points/check', {
+                    x: x,
+                    y: y,
+                    radius: radius
+                }, {
+                    headers: {
+                        Authorization: 'Bearer ' + sessionStorage.getItem('access_token')
+                    }
+                }).then(response => {
+                    window.location.reload();
+                });
+            } else {
+                setYError(true);
             }
-        })
     };
 
     return (
         <form className="coordinatesForm" onSubmit={handleSubmit}>
+            {yError && <div className="errorMessage">Ошибка: значение Y должно быть в диапазоне от -5 до 5</div>}
             <label>
                 Координата X:
                 <select className="xForm" value={x} onChange={e => setX(e.target.value)}>
@@ -47,12 +48,12 @@ function CoordinatesForm() {
 
             <label>
                 Координата Y:
-                <input placeholder="(-5 ... 5)" type="number" min="-5" max="5"  value={y} onChange={e => setY(e.target.value)} />
+                <input className="yForm" placeholder="(-5 ... 5)" type="number" min="-5" max="5"  value={y} onChange={e => setY(e.target.value)} error={yError}/>
             </label>
 
             <label>
                 Радиус:
-                <select value={radius} onChange={e => setRadius(e.target.value)}>
+                <select className="rForm" value={radius} onChange={e => setRadius(e.target.value)}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -62,6 +63,7 @@ function CoordinatesForm() {
             </label>
             <button type="submit" >Проверить</button>
         </form>
+
     );
 }
 export default CoordinatesForm;
