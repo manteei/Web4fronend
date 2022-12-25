@@ -68,7 +68,7 @@ function Table() {
             </tbody>
             </table>
             {data.map(item => (
-                <div style={{ top: `${400 * item.y/(-3*lastRadius)+200+354}px`, left: `${ 400 * item.x/(3*lastRadius)+200+558}px`, backgroundColor: item.hit ? 'green' : '#960a0a'}} className="dot"></div>
+                <div style={{ top: `${400 * item.y/(-3*lastRadius)+200+216}px`, left: `${ 400 * item.x/(3*lastRadius)+200+1048}px`, backgroundColor: item.hit ? 'green' : '#960a0a'}} className="dot"></div>
             ))}
             <button type="clean" onClick={cleanTable}>Очистить таблицу</button>
         </div>

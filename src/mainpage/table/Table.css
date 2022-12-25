@@ -4,11 +4,10 @@ table{
     color: #b2e8b2;
     font-size: 20px;
     border-radius: 10px;
-    margin-left: 300px;
+    margin-left: 20px;
     width: 900px;
-    margin-top: 30px;
     position: absolute;
-    top: 800px;
+    top: 220px;
 }
 
 
@@ -20,8 +19,10 @@ tr{
     padding: 10px;
 }
 button[type="clean"]{
-    margin-top: 20px;
-    margin-left: 440px;
+    width: auto;
+    position: absolute;
+    top: 0;
+    right: 90px;
 }
 
 .dot {
