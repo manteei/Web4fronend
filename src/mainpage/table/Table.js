@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import "./Table.css"
+import "../area/area.css"
 
 function Table() {
     const [data, setData] = useState([]);
@@ -30,8 +31,18 @@ function Table() {
             });
     }, []);
 
+    const [lastRadius, setLastRadius] = useState(null);
+
+    useEffect(() => {
+        if (data.length > 0) {
+            setLastRadius(data[data.length - 1].radius);
+        }
+    }, [data]);
+
+
     return (
         <div>
+
         <table>
             <thead>
             <tr>
@@ -46,15 +57,19 @@ function Table() {
             <tbody>
             {data.map(item => (
                 <tr key={item.id}>
-                    <td>{item.x}</td>
-                    <td>{item.y}</td>
-                    <td>{item.radius}</td>
+                    <td className="xForm">{item.x}</td>
+                    <td className="yForm">{item.y}</td>
+                    <td className="rForm">{item.radius}</td>
                     <td>{item.date}</td>
                     <td>{item.duration}</td>
                     <td>{item.hit ? 'Да' : 'Нет'}</td>
-                </tr>))}
+                </tr>
+            ))}
             </tbody>
             </table>
+            {data.map(item => (
+                <div style={{ top: `${400 * item.y/(-3*lastRadius)+200+354}px`, left: `${ 400 * item.x/(3*lastRadius)+200+558}px`, backgroundColor: item.hit ? 'green' : '#960a0a'}} className="dot"></div>
+            ))}
             <button type="clean" onClick={cleanTable}>Очистить таблицу</button>
         </div>
     );

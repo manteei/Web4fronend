@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import image from "../image/area.png"
 import axios from "axios";
+import "./area.css"
 
 function Area() {
     function handleClick(event) {
@@ -8,6 +9,8 @@ function Area() {
         let y = event.pageY;
         let imgx = event.target.offsetLeft;
         let imgy = event.target.offsetTop
+        console.log(imgx);
+        console.log(imgy);
         const rFormElement = document.querySelector('.rForm');
         const rValue = rFormElement.value;
         let x3 = ((x - imgx - 200) * (3*rValue)/400)
@@ -24,13 +27,12 @@ function Area() {
         }).then(response => {
             window.location.reload();
         });
-
-
     }
 
-
     return (
-        <img src={image} alt="Координатная плоскость" onClick={event => handleClick(event)} />
+        <div>
+        <img src={image} className="image" alt="Координатная плоскость" onClick={event => handleClick(event)} />
+        </div>
     );
 }
 export default Area;

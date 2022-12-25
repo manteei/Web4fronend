@@ -23,14 +23,14 @@ const MainPage = () => {
 
     return (
         <div>
-        <div>
-            <CoordinatesForm></CoordinatesForm>
-            <Area></Area>
-        </div>
-        <div>
-            <button type="exit" onClick={handleLogout}>Выйти</button>
-        </div>
-            <div><Table></Table></div>
+            <div>
+                <CoordinatesForm></CoordinatesForm>
+            </div>
+            <div>
+                <Table></Table>
+                <Area></Area>
+                <button type="exit" onClick={handleLogout}>Выйти</button>
+            </div>
         </div>
     );
 }

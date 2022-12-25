@@ -7,6 +7,8 @@ table{
     margin-left: 300px;
     width: 900px;
     margin-top: 30px;
+    position: absolute;
+    top: 800px;
 }
 
 
@@ -18,5 +20,15 @@ tr{
     padding: 10px;
 }
 button[type="clean"]{
-    margin-left: 300px;
+    margin-top: 20px;
+    margin-left: 440px;
+}
+
+.dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #8b0000;
+    pointer-events: none;
 }
