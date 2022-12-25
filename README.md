@@ -1,3 +1,8 @@
+Уровень front-end должен быть построен на React + Redux (необходимо использовать ES6 и JSX) с использованием обычных полей ввода HTML.
+
+![Image alt](https://github.com/manteei/Web4frontend/raw/master/web4Main.png)
+![Image alt](https://github.com/manteei/Web4frontend/raw/master/Web4Reg.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,5 +73,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-![Image alt](https://github.com/manteei/Web4frontend/raw/master/web4Main.png)
-![Image alt](https://github.com/manteei/Web4frontend/raw/master/web4Reg.png)
+
