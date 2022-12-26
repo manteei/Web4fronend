@@ -15,9 +15,15 @@ function Table() {
             }
         }).then(response => {
             window.location.reload();
+        }).catch(error => {
+            if (error?.response?.status === 403) {
+                getNewToken();
+            }
         });
 
     };
+
+
     useEffect(() => {
         axios.get('http://localhost:8080/api/points', {
             headers: {
