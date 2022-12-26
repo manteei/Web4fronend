@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import "./Table.css"
 import "../area/area.css"
+import {getNewToken} from "../util/refresh";
 
 function Table() {
     const [data, setData] = useState([]);
@@ -27,7 +28,9 @@ function Table() {
                 setData(response.data);
             })
             .catch(error => {
-                console.log(error);
+                if (error?.response?.status === 403) {
+                    getNewToken();
+                }
             });
     }, []);
 

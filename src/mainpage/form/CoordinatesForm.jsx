@@ -1,36 +1,39 @@
 import React, { useState } from 'react';
 import "./CoordinatesForm.css"
 import axios from "axios";
+import {getNewToken} from "../util/refresh"
 function CoordinatesForm() {
 
     const [x, setX] = useState("0");
     const [y, setY] = useState("0");
     const [radius, setRadius] = useState('1');
-    const [yError, setYError] = useState(false);
 
     const handleSubmit = async e => {
         e.preventDefault();
 
-            if (y >= -5 && y <= 5) {
-                await axios.post('http://localhost:8080/api/points/check', {
-                    x: x,
-                    y: y,
-                    radius: radius
-                }, {
-                    headers: {
-                        Authorization: 'Bearer ' + sessionStorage.getItem('access_token')
-                    }
-                }).then(response => {
+            if (y >= -5 && y <= 5) {await axios.post('http://localhost:8080/api/points/check', {
+                x: x,
+                y: y,
+                radius: radius
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + sessionStorage.getItem('access_token')
+                }
+            })
+                .then(() => {
                     window.location.reload();
-                });
-            } else {
-                setYError(true);
+                })
+                    .catch(error => {
+                        if (error?.response?.status === 403) {
+                            getNewToken();
+                        }
+                    })
             }
     };
 
+
     return (
         <form className="coordinatesForm" onSubmit={handleSubmit}>
-            {yError && <div className="errorMessage">Ошибка: значение Y должно быть в диапазоне от -5 до 5</div>}
             <label>
                 Координата X:
                 <select className="xForm" value={x} onChange={e => setX(e.target.value)}>
@@ -48,7 +51,7 @@ function CoordinatesForm() {
 
             <label>
                 Координата Y:
-                <input className="yForm" placeholder="(-5 ... 5)" type="number" min="-5" max="5"  value={y} onChange={e => setY(e.target.value)} error={yError}/>
+                <input className="yForm" placeholder="(-5 ... 5)" type="number" min="-5" max="5"  value={y} onChange={e => setY(e.target.value)}/>
             </label>
 
             <label>

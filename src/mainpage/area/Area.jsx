@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import image from "../image/area.png"
 import axios from "axios";
 import "./area.css"
+import {getNewToken} from "../util/refresh";
 
 function Area() {
     function handleClick(event) {
@@ -26,6 +27,10 @@ function Area() {
             }
         }).then(response => {
             window.location.reload();
+        }).catch(error => {
+            if (error?.response?.status === 403) {
+                getNewToken();
+            }
         });
     }
 

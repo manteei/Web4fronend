@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import "./loginAuthpage.css"
+import "./loginAuthpage.css";
+import {setToken} from "../mainpage/util/refresh";
 
 function LoginForm() {
     const [username, setUsername] = useState('');
@@ -15,7 +16,9 @@ function LoginForm() {
                 `http://localhost:8080/api/login?username=${username}&password=${password}`
             ).then(response => {
                 const accessToken = response.data.access_token;
+                const refreshToken = response.data.refresh_token;
                 sessionStorage.setItem('access_token', accessToken);
+                setToken(refreshToken);
                 // перенаправление на главную страницу
                 window.location.href = '/';
             })
